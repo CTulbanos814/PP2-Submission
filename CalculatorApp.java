@@ -7,62 +7,62 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class CalculatorApp extends Application {
+public class T505Calcu extends Application {
 
-   private TextField num1Field;
-   private TextField num2Field;
-   private Label resultLabel;
+   private TextField Num1;
+   private TextField Num2;
+   private Label Results;
 
    @Override
    public void start(Stage primaryStage) {
-      primaryStage.setTitle("Simple Calculator");
+      primaryStage.setTitle("Simp Cal");
    
       GridPane grid = new GridPane();
       grid.setPadding(new Insets(10, 10, 10, 10));
       grid.setVgap(5);
       grid.setHgap(5);
    
-      num1Field = new TextField();
-      num1Field.setPromptText("Enter number 1");
-      GridPane.setConstraints(num1Field, 0, 0);
+      Num1 = new TextField();
+      Num1.setPromptText("Enter number 1");
+      GridPane.setConstraints(Num1, 0, 0);
    
-      num2Field = new TextField();
-      num2Field.setPromptText("Enter number 2");
-      GridPane.setConstraints(num2Field, 0, 1);
+      Num2 = new TextField();
+      Num2.setPromptText("Enter number 2");
+      GridPane.setConstraints(Num2, 0, 1);
    
-      Button addButton = new Button("+");
-      addButton.setOnAction(e -> calculate('+'));
-      GridPane.setConstraints(addButton, 1, 0);
+      Button Add = new Button("+");
+      Add.setOnAction(e -> calculate('+'));
+      GridPane.setConstraints(Add, 1, 0);
    
-      Button subtractButton = new Button("-");
-      subtractButton.setOnAction(e -> calculate('-'));
-      GridPane.setConstraints(subtractButton, 1, 1);
+      Button Sub = new Button("-");
+      Sub.setOnAction(e -> calculate('-'));
+      GridPane.setConstraints(Sub, 1, 1);
    
-      Button multiplyButton = new Button("*");
-      multiplyButton.setOnAction(e -> calculate('*'));   
-      GridPane.setConstraints(multiplyButton, 2, 0);
+      Button Multi = new Button("*");
+      Multi.setOnAction(e -> calculate('*'));   
+      GridPane.setConstraints(Multi, 2, 0);
    
-      Button divideButton = new Button("/");
-      divideButton.setOnAction(e -> calculate('/'));
-      GridPane.setConstraints(divideButton, 2, 1);
+      Button Divide = new Button("/");
+      Divide.setOnAction(e -> calculate('/'));
+      GridPane.setConstraints(Divide, 2, 1);
    
-      resultLabel = new Label("Result:");
-      GridPane.setConstraints(resultLabel, 0, 2);
+      Results = new Label("Result:");
+      GridPane.setConstraints(Results, 0, 2);
    
-      grid.getChildren().addAll(num1Field, num2Field, addButton, subtractButton, multiplyButton, divideButton, resultLabel);
+      grid.getChildren().addAll(Num1, Num2, Add, Sub, Multi, Divide, Results);
    
       Scene scene = new Scene(grid, 300, 150);
       primaryStage.setScene(scene);
       primaryStage.show();
    }
 
-   private void calculate(char operator) {
+   private void calculate(char Ope) {
       try {
-         double num1 = Double.parseDouble(num1Field.getText());
-         double num2 = Double.parseDouble(num2Field.getText());
+         double num1 = Double.parseDouble(Num1.getText());
+         double num2 = Double.parseDouble(Num2.getText());
          double result = 0;
       
-         switch (operator) {
+         switch (Ope) {
             case '+':
                result = num1 + num2;
                break;
@@ -76,15 +76,15 @@ public class CalculatorApp extends Application {
                if (num2 != 0) {
                   result = num1 / num2;
                } else {
-                  resultLabel.setText("Error: Division by zero");
+                  Results.setText("Error: Division by zero");
                   return;
                }
                break;
          }
       
-         resultLabel.setText("Result: " + result);
+         Results.setText("Result: " + result);
       } catch (NumberFormatException e) {
-         resultLabel.setText("Error: Invalid input");
+         Results.setText("Error: Invalid input");
       }
    }
 
